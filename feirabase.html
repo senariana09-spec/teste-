@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Página</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html,
+        body {
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #fff1b8;
+        }
+
+        /* =====================================
+           CAMADA 1 — FUNDO AMARELO
+        ===================================== */
+
+        .fundo {
+            position: fixed;
+            inset: 0;
+
+            background: #fff1b8;
+
+            z-index: 1;
+        }
+
+
+        /* =====================================
+           CAMADA 2 — CABEÇALHO MARROM
+        ===================================== */
+
+        .cabecalho {
+            position: fixed;
+
+            top: 0;
+            left: 0;
+
+            width: 100%;
+            height: 85px;
+
+            background: #4b3027;
+
+            border-top: 3px solid #3b2923;
+
+            z-index: 10;
+        }
+
+
+        /* =====================================
+           LOGO
+        ===================================== */
+
+        .logo {
+            position: absolute;
+
+            left: 20px;
+            top: 10px;
+
+            width: 65px;
+            height: 65px;
+
+            border-radius: 50%;
+
+            overflow: hidden;
+        }
+
+        .logo img {
+            width: 100%;
+            height: 100%;
+
+            object-fit: contain;
+        }
+
+
+        /* =====================================
+           ABAS
+        ===================================== */
+
+        .abas {
+            position: absolute;
+
+            left: 157px;
+            bottom: 0;
+
+            display: flex;
+            gap: 26px;
+
+            align-items: flex-end;
+            
+        }
+
+        .aba {
+            width: 126px;
+            height: 43px;
+
+            background: white;
+
+            border: none;
+
+            border-radius: 20px 20px 0 0;
+
+            cursor: pointer;
+
+            transition: 0.2s;
+        }
+
+        .aba:hover {
+            background: #f3f3f3;
+
+            transform: translateY(5px);
+        }
+
+
+        /* =====================================
+           PESQUISA
+        ===================================== */
+
+        .pesquisa {
+            position: absolute;
+
+            right: 126px;
+            top: 19px;
+
+            width: 405px;
+            height: 49px;
+
+            background: white;
+
+            border-radius: 30px;
+
+            display: flex;
+            align-items: center;
+        }
+
+        .icone-pesquisa {
+            margin-left: 20px;
+            width: 35px;
+            height: 40px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .icone-pesquisa img {
+            width: 30px;
+            height: 40px;
+            object-fit: contain;
+        }
+       
+
+        .pesquisa input {
+            width: 330px;
+            height: 100%;
+
+            margin-left: 14px;
+
+            border: none;
+            outline: none;
+
+            background: transparent;
+
+            font-size: 18px;
+        }
+
+
+        /* =====================================
+           CAMADA 3 — ÁREA AMARELA
+           FICA ACIMA DO CABEÇALHO
+        ===================================== */
+
+        .conteudo {
+            position: fixed;
+
+            top: 85px;
+            left: 0;
+
+            width: 100%;
+            height: calc(100% - 85px);
+
+            background: #fff1b8;
+
+            z-index: 20;
+
+            /*
+                Se quiser que essa camada tenha
+                transparência, pode usar:
+
+                background: rgba(255, 241, 184, 0.95);
+            */
+        }
+
+
+        /* =====================================
+           IMAGEM/DECORAÇÃO DO FUNDO
+        ===================================== */
+
+        .decoracao {
+            position: absolute;
+
+            right: 0;
+            bottom: 0;
+
+            width: 400px;
+
+            opacity: 0.18;
+
+            pointer-events: none;
+        }
+        .decoracao {
+    position: absolute;
+    right: -150px;
+    bottom: -70px;
+    width: 700px;
+    opacity: 0.18;
+    pointer-events: none;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- ==============================
+         CAMADA 1
+         FUNDO
+    =============================== -->
+
+    <div class="fundo">
+        <img src="fundooooooooo.png" alt="">
+        
+    </div>
+
+
+    <!-- ==============================
+         CAMADA 2
+         CABEÇALHO MARROM
+    =============================== -->
+
+    <header class="cabecalho">
+
+        <div class="logo">
+            <img src="kit.png" alt="Logo">
+        </div>
+
+
+        <nav class="abas">
+
+            <button class="aba">Home</button>
+
+            <button class="aba">Sobre</button>
+
+            <button class="aba">Turmas</button>
+
+            <button class="aba">Avalie</button>
+
+        </nav>
+
+
+        <div class="pesquisa">
+
+            <div class="icone-pesquisa">
+                <img src="lupa2.png"
+                height="40px" width="30px" right alt="">
+            </div>
+
+            <input
+                type="text"
+                aria-label="Pesquisar"
+            >
+
+        </div>
+
+    </header>
+
+
+    <!-- ==============================
+         CAMADA 3
+         ÁREA AMARELA
+         ACIMA DO CABEÇALHO
+    =============================== -->
+
+    <main class="conteudo">
+
+        <!--
+            Coloque aqui o conteúdo
+            da sua página.
+        -->
+
+    </main>
+
+    <main class="conteudo">
+
+        <img
+            src="ChatGPT_Image_21_de_ago._de_2026__13_31_48-removebg-preview.png"
+            alt=""
+            class="decoracao"
+        >
+    
+    </main>
+
+</body>
+</html>

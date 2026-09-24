@@ -1,0 +1,1034 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Envie seu desenho</title>
+
+
+    <style>
+
+        /* =====================================
+           CONFIGURAÇÕES GERAIS
+        ===================================== */
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html,
+        body {
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+
+        body {
+            font-family: "Arial Rounded MT Bold", Arial, sans-serif;
+            background: #fff1b8;
+        }
+
+
+        /* =====================================
+           FUNDO
+        ===================================== */
+
+        .fundo {
+
+            position: fixed;
+
+            inset: 0;
+
+            width: 100%;
+            height: 100%;
+
+            background: #fff1b8;
+
+            z-index: 1;
+        }
+
+
+        /* =====================================
+           CABEÇALHO
+        ===================================== */
+
+        .cabecalho {
+
+            position: fixed;
+
+            top: 0;
+            left: 0;
+
+            width: 100%;
+            height: 82px;
+
+            background: #4b3027;
+
+            border-top: 3px solid #3b2923;
+
+            z-index: 100;
+        }
+
+
+        /* =====================================
+           LOGO
+        ===================================== */
+
+        .logo {
+
+            position: absolute;
+
+            left: 20px;
+            top: 7px;
+
+            width: 65px;
+            height: 65px;
+
+            border-radius: 50%;
+
+            overflow: hidden;
+        }
+
+        .logo img {
+
+            width: 100%;
+            height: 100%;
+
+            object-fit: contain;
+        }
+
+
+        /* =====================================
+           ABAS
+        ===================================== */
+
+        .abas {
+
+            position: absolute;
+
+            left: 151px;
+            bottom: 0;
+
+            display: flex;
+
+            gap: 26px;
+
+            align-items: flex-end;
+        }
+
+        .aba {
+
+            width: 126px;
+            height: 43px;
+
+            background: white;
+
+            border: none;
+
+            border-radius: 20px 20px 0 0;
+
+            cursor: pointer;
+
+            color: #4b3027;
+
+            font-family: "Arial Rounded MT Bold", Arial, sans-serif;
+
+            font-size: 21px;
+
+            font-weight: bold;
+
+            transition: 0.2s;
+        }
+
+        .aba:hover {
+
+            background: #f3f3f3;
+
+            transform: translateY(4px);
+        }
+
+
+        /* =====================================
+           PESQUISA
+        ===================================== */
+
+        .pesquisa {
+
+            position: absolute;
+
+            right: 126px;
+            top: 18px;
+
+            width: 391px;
+            height: 47px;
+
+            background: white;
+
+            border-radius: 30px;
+
+            display: flex;
+
+            align-items: center;
+        }
+
+        .icone-pesquisa {
+
+            margin-left: 18px;
+
+            width: 35px;
+            height: 40px;
+
+            display: flex;
+
+            align-items: center;
+            justify-content: center;
+        }
+
+        .icone-pesquisa img {
+
+            width: 30px;
+            height: 40px;
+
+            object-fit: contain;
+        }
+
+        .pesquisa input {
+
+            width: 315px;
+            height: 100%;
+
+            margin-left: 12px;
+
+            border: none;
+            outline: none;
+
+            background: transparent;
+
+            font-size: 18px;
+        }
+
+
+        /* =====================================
+           ÁREA DO CONTEÚDO
+        ===================================== */
+
+        .conteudo {
+
+            position: fixed;
+
+            top: 82px;
+            left: 0;
+
+            width: 100%;
+            height: calc(100% - 82px);
+
+            background: #fff1b8;
+
+            z-index: 20;
+
+            overflow: hidden;
+        }
+
+
+        /* =====================================
+           DECORAÇÃO
+        ===================================== */
+
+        .decoracao {
+
+            position: absolute;
+
+            right: -150px;
+            bottom: -70px;
+
+            width: 700px;
+
+            opacity: 0.18;
+
+            pointer-events: none;
+
+            z-index: 1;
+        }
+
+
+        /* =====================================
+           PAINEL PRINCIPAL
+        ===================================== */
+
+        .painel {
+
+            position: absolute;
+
+            top: 77px;
+            left: 50%;
+
+            transform: translateX(-50%);
+
+            width: 845px;
+            height: 600px;
+
+            background: #c5ddeb;
+
+            border-radius: 23px 23px 0 0;
+
+            z-index: 5;
+        }
+
+
+        /* =====================================
+           TÍTULO
+        ===================================== */
+
+        .titulo {
+
+            position: absolute;
+
+            top: 30px;
+            left: 0;
+
+            width: 100%;
+
+            text-align: center;
+
+            color: #4b3027;
+
+            font-size: 43px;
+
+            font-weight: bold;
+        }
+
+
+        /* =====================================
+           COLUNA ESQUERDA
+        ===================================== */
+
+        .coluna-esquerda {
+
+            position: absolute;
+
+            left: 33px;
+            top: 105px;
+
+            width: 385px;
+        }
+
+
+        /* =====================================
+           TEXTO CARREGAR
+        ===================================== */
+
+        .rotulo {
+
+            color: #4b3027;
+
+            font-size: 24px;
+
+            font-weight: bold;
+
+            margin-bottom: 7px;
+        }
+
+
+        /* =====================================
+           BOTÃO DE ARQUIVO
+        ===================================== */
+
+        .arquivo {
+
+            width: 385px;
+            height: 34px;
+
+            background: white;
+
+            border: none;
+
+            border-radius: 20px;
+
+            cursor: pointer;
+
+            color: #4b3027;
+
+            font-size: 16px;
+
+            text-align: left;
+
+            padding-left: 15px;
+        }
+
+        .arquivo:hover {
+
+            background: #f7f7f7;
+        }
+
+
+        /* =====================================
+           ÁREA PARA DESENHO
+        ===================================== */
+
+        .area-desenho {
+
+            margin-top: 34px;
+
+            width: 385px;
+            height: 348px;
+
+            background: white;
+
+            border-radius: 20px;
+
+            overflow: hidden;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+        }
+
+        .area-desenho img {
+
+            width: 100%;
+            height: 100%;
+
+            object-fit: contain;
+
+            display: block;
+        }
+
+
+        /* =====================================
+           COLUNA DIREITA
+        ===================================== */
+
+        .coluna-direita {
+
+            position: absolute;
+
+            left: 448px;
+            top: 168px;
+
+            width: 385px;
+        }
+
+
+        /* =====================================
+           CAMPOS
+        ===================================== */
+
+        .campo {
+
+            margin-bottom: 26px;
+        }
+
+        .campo label {
+
+            display: block;
+
+            color: #4b3027;
+
+            font-size: 23px;
+
+            font-weight: bold;
+
+            margin-bottom: 5px;
+        }
+
+        .campo input {
+
+            width: 385px;
+            height: 34px;
+
+            background: white;
+
+            border: none;
+
+            outline: none;
+
+            border-radius: 20px;
+
+            padding: 0 15px;
+
+            color: #4b3027;
+
+            font-family: Arial, sans-serif;
+
+            font-size: 17px;
+        }
+
+        .campo input:focus {
+
+            outline: 2px solid #a8897e;
+        }
+
+
+        /* =====================================
+           BOTÃO ENVIE
+        ===================================== */
+
+        .botao-envie {
+
+            display: block;
+
+            margin: 10px auto 0 auto;
+
+            width: 198px;
+            height: 101px;
+
+            background: #fff1b8;
+
+            border: none;
+
+            border-radius: 21px;
+
+            color: #4b3027;
+
+            font-family: "Arial Rounded MT Bold", Arial, sans-serif;
+
+            font-size: 43px;
+
+            font-weight: bold;
+
+            cursor: pointer;
+
+            transition: 0.2s;
+        }
+
+        .botao-envie:hover {
+
+            transform: scale(1.03);
+
+            background: #ffeaa0;
+        }
+
+
+        /* =====================================
+           RESPONSIVIDADE
+        ===================================== */
+
+        @media (max-width: 950px) {
+
+            .painel {
+
+                transform: translateX(-50%) scale(0.85);
+
+                transform-origin: top center;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- =====================================
+         FUNDO
+    ===================================== -->
+
+    <div class="fundo"></div>
+
+
+    <!-- =====================================
+         CABEÇALHO
+    ===================================== -->
+
+    <header class="cabecalho">
+
+
+        <!-- LOGO -->
+
+        <div class="logo">
+
+            <img
+                src="kit.png"
+                alt="Logo"
+            >
+
+        </div>
+
+
+        <!-- ABAS -->
+
+        <nav class="abas">
+
+            <button
+                class="aba"
+                onclick="window.location.href='home.html'"
+            >
+                home
+            </button>
+
+            <button
+                class="aba"
+                onclick="window.location.href='sobre.html'"
+            >
+                sobre
+            </button>
+
+            <button
+                class="aba"
+                onclick="window.location.href='turmas.html'"
+            >
+                Desenhos
+            </button>
+
+            <button
+                class="aba"
+                onclick="window.location.href='avalie.html'"
+            >
+                avalie
+            </button>
+
+        </nav>
+
+
+        <!-- PESQUISA -->
+
+        <div class="pesquisa">
+
+            <div class="icone-pesquisa">
+
+                <img
+                    src="lupa2.png"
+                    alt="Pesquisar"
+                >
+
+            </div>
+
+            <input
+                type="text"
+                aria-label="Pesquisar"
+            >
+
+        </div>
+
+    </header>
+
+
+    <!-- =====================================
+         CONTEÚDO
+    ===================================== -->
+
+    <main class="conteudo">
+
+
+        <!-- DECORAÇÃO -->
+
+        <img
+            src="ChatGPT_Image_21_de_ago._de_2026__13_31_48-removebg-preview.png"
+            alt=""
+            class="decoracao"
+        >
+
+
+        <!-- =================================
+             PAINEL
+        ================================== -->
+
+        <section class="painel">
+
+
+            <!-- TÍTULO -->
+
+            <h1 class="titulo">
+                Envie seu desenho
+            </h1>
+
+
+            <!-- =================================
+                 COLUNA ESQUERDA
+            ================================== -->
+
+            <div class="coluna-esquerda">
+
+                <div class="rotulo">
+                    Carregar arquivo:
+                </div>
+
+
+                <input
+                    type="file"
+                    class="arquivo"
+                    id="arquivo"
+                    accept="image/*"
+                >
+
+
+                <div
+                    class="area-desenho"
+                    id="areaDesenho"
+                >
+
+                </div>
+
+            </div>
+
+
+            <!-- =================================
+                 COLUNA DIREITA
+            ================================== -->
+
+            <div class="coluna-direita">
+
+
+                <!-- NOME DA OBRA -->
+
+                <div class="campo">
+
+                    <label for="obra">
+                        Nome da obra:
+                    </label>
+
+                    <input
+                        type="text"
+                        id="obra"
+                        placeholder=""
+                    >
+
+                </div>
+
+
+                <!-- NOME DO AUTOR -->
+
+                <div class="campo">
+
+                    <label for="autor">
+                        Nome do autor:
+                    </label>
+
+                    <input
+                        type="text"
+                        id="autor"
+                        placeholder=""
+                    >
+
+                </div>
+
+
+                <!-- BOTÃO -->
+
+                <button
+                    class="botao-envie"
+                    type="button"
+                    id="botaoEnvie"
+                >
+                    Envie
+                </button>
+
+
+            </div>
+
+
+        </section>
+
+    </main>
+
+
+    <!-- =====================================
+         JAVASCRIPT
+    ===================================== -->
+
+    <script>
+
+        /* =====================================
+           ELEMENTOS
+        ===================================== */
+
+        const arquivo =
+            document.getElementById("arquivo");
+
+        const areaDesenho =
+            document.getElementById("areaDesenho");
+
+        const botaoEnvie =
+            document.getElementById("botaoEnvie");
+
+
+        /* Guarda a imagem selecionada */
+
+        let imagemSelecionada = null;
+
+
+        /* =====================================
+           MOSTRAR IMAGEM
+        ===================================== */
+
+        arquivo.addEventListener(
+            "change",
+            function () {
+
+                const arquivoSelecionado =
+                    this.files[0];
+
+
+                if (!arquivoSelecionado) {
+                    return;
+                }
+
+
+                /* Verifica se é uma imagem */
+
+                if (
+                    !arquivoSelecionado.type.startsWith("image/")
+                ) {
+
+                    alert(
+                        "Por favor, selecione uma imagem."
+                    );
+
+                    arquivo.value = "";
+
+                    imagemSelecionada = null;
+
+                    return;
+                }
+
+
+                /* Guarda o arquivo */
+
+                imagemSelecionada =
+                    arquivoSelecionado;
+
+
+                /* Cria URL temporária */
+
+                const urlImagem =
+                    URL.createObjectURL(
+                        arquivoSelecionado
+                    );
+
+
+                /* Limpa a área */
+
+                areaDesenho.innerHTML = "";
+
+
+                /* Cria imagem */
+
+                const imagem =
+                    document.createElement("img");
+
+
+                imagem.src =
+                    urlImagem;
+
+                imagem.alt =
+                    "Imagem selecionada";
+
+
+                /* Coloca no quadrado */
+
+                areaDesenho.appendChild(
+                    imagem
+                );
+
+            }
+        );
+
+
+        /* =====================================
+           BOTÃO ENVIE
+        ===================================== */
+
+        botaoEnvie.addEventListener(
+            "click",
+            function () {
+
+
+                /* =================================
+                   VERIFICAR IMAGEM
+                ================================= */
+
+                if (!imagemSelecionada) {
+
+                    alert(
+                        "Escolha uma imagem antes de enviar."
+                    );
+
+                    return;
+                }
+
+
+                /* =================================
+                   PEGAR NOME DA OBRA
+                ================================= */
+
+                const nomeObra =
+                    document
+                        .getElementById("obra")
+                        .value
+                        .trim();
+
+
+                /* =================================
+                   PEGAR NOME DO AUTOR
+                ================================= */
+
+                const nomeAutor =
+                    document
+                        .getElementById("autor")
+                        .value
+                        .trim();
+
+
+                /* =================================
+                   CONVERTER IMAGEM
+                ================================= */
+
+                const leitor =
+                    new FileReader();
+
+
+                leitor.onload =
+                    function (evento) {
+
+
+                        const imagemBase64 =
+                            evento.target.result;
+
+
+                        /* =================================
+                           PEGAR DESENHOS SALVOS
+                        ================================= */
+
+                        let desenhos = [];
+
+
+                        try {
+
+                            desenhos =
+                                JSON.parse(
+                                    localStorage.getItem(
+                                        "miauseumDesenhos"
+                                    )
+                                ) || [];
+
+                        } catch (erro) {
+
+                            console.error(
+                                "Erro ao ler os desenhos:",
+                                erro
+                            );
+
+                            desenhos = [];
+
+                        }
+
+
+                        /* =================================
+                           VERIFICAR LIMITE
+                        ================================= */
+
+                        if (desenhos.length >= 9) {
+
+                            alert(
+                                "A galeria está cheia! Os 9 espaços já estão ocupados."
+                            );
+
+                            return;
+                        }
+
+
+                        /* =================================
+                           CRIAR DESENHO
+                        ================================= */
+
+                        const novoDesenho = {
+
+                            imagem:
+                                imagemBase64,
+
+                            nome:
+                                nomeObra ||
+                                "Sem nome",
+
+                            autor:
+                                nomeAutor ||
+                                "Autor desconhecido"
+
+                        };
+
+
+                        /* =================================
+                           ADICIONAR NO PRÓXIMO ESPAÇO
+                        ================================= */
+
+                        desenhos.push(
+                            novoDesenho
+                        );
+
+
+                        /* =================================
+                           SALVAR
+                        ================================= */
+
+                        try {
+
+                            localStorage.setItem(
+                                "miauseumDesenhos",
+                                JSON.stringify(
+                                    desenhos
+                                )
+                            );
+
+                        } catch (erro) {
+
+                            console.error(
+                                "Erro ao salvar:",
+                                erro
+                            );
+
+                            alert(
+                                "Não foi possível salvar a imagem. Tente usar uma imagem menor."
+                            );
+
+                            return;
+                        }
+
+
+                        /* =================================
+                           AVISO
+                        ================================= */
+
+                        alert(
+                            "Desenho enviado com sucesso!"
+                        );
+
+
+                        /* =================================
+                           IR PARA TURMAS
+                        ================================= */
+
+                        window.location.href =
+                            "turmas.html";
+
+                    };
+
+
+                /* Começa a leitura */
+
+                leitor.readAsDataURL(
+                    imagemSelecionada
+                );
+
+            }
+        );
+
+    </script>
+
+
+</body>
+
+</html>

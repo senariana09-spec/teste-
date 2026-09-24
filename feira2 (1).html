@@ -1,0 +1,911 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Home</title>
+
+    <style>
+
+        /* =====================================
+           CONFIGURAÇÕES GERAIS
+        ===================================== */
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html,
+        body {
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #fff1b8;
+        }
+
+
+        /* =====================================
+           FUNDO
+        ===================================== */
+
+        .fundo {
+            position: fixed;
+            inset: 0;
+
+            width: 100%;
+            height: 100%;
+
+            background: #fff1b8;
+
+            z-index: 1;
+        }
+
+
+        /* =====================================
+           CABEÇALHO
+        ===================================== */
+
+        .cabecalho {
+            position: fixed;
+
+            top: 0;
+            left: 0;
+
+            width: 100%;
+            height: 85px;
+
+            background: #4b3027;
+
+            border-top: 3px solid #3b2923;
+
+            z-index: 100;
+        }
+
+
+        /* =====================================
+           LOGO
+        ===================================== */
+
+        .logo {
+            position: absolute;
+
+            left: 20px;
+            top: 7px;
+
+            width: 65px;
+            height: 65px;
+
+            border-radius: 50%;
+
+            overflow: hidden;
+        }
+
+        .logo img {
+            width: 100%;
+            height: 100%;
+
+            object-fit: contain;
+        }
+
+
+        /* =====================================
+           ABAS
+        ===================================== */
+
+        .abas {
+            position: absolute;
+
+            left: 155px;
+            bottom: 0;
+
+            display: flex;
+
+            gap: 26px;
+
+            align-items: flex-end;
+        }
+
+        .aba {
+            width: 126px;
+            height: 45px;
+
+            background: white;
+
+            border: none;
+
+            border-radius: 20px 20px 0 0;
+
+            cursor: pointer;
+
+            color: #111;
+
+            font-size: 16px;
+
+            transition: 0.2s;
+        }
+
+        .aba:hover {
+            background: #eeeeee;
+
+            transform: translateY(4px);
+        }
+
+        .aba.ativa {
+            background: white;
+        }
+
+
+        /* =====================================
+           BARRA DE PESQUISA
+        ===================================== */
+
+        .pesquisa {
+            position: absolute;
+
+            right: 126px;
+            top: 19px;
+
+            width: 405px;
+            height: 49px;
+
+            background: white;
+
+            border-radius: 30px;
+
+            display: flex;
+
+            align-items: center;
+        }
+
+        .icone-pesquisa {
+            margin-left: 18px;
+
+            width: 35px;
+            height: 40px;
+
+            display: flex;
+
+            align-items: center;
+            justify-content: center;
+        }
+
+        .icone-pesquisa img {
+            width: 30px;
+            height: 40px;
+
+            object-fit: contain;
+        }
+
+        .pesquisa input {
+            width: 330px;
+            height: 100%;
+
+            margin-left: 14px;
+
+            border: none;
+            outline: none;
+
+            background: transparent;
+
+            font-size: 18px;
+        }
+
+
+        /* =====================================
+           CONTEÚDO DA HOME
+        ===================================== */
+
+        .conteudo {
+            position: fixed;
+
+            top: 85px;
+            left: 0;
+
+            width: 100%;
+            height: calc(100% - 85px);
+
+            background: #fff1b8;
+
+            z-index: 20;
+
+            overflow: hidden;
+        }
+
+
+        /* =====================================
+           FAIXA DE PEIXES
+        ===================================== */
+
+        .faixa-peixes {
+            position: absolute;
+
+            top: 0;
+            left: 0;
+
+            width: 100%;
+            height: 78px;
+
+            background: white;
+
+            border-top: 10px solid #c5ddeb;
+            border-bottom: 8px solid #c5ddeb;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-around;
+
+            overflow: hidden;
+
+            z-index: 10;
+        }
+
+
+        /* =====================================
+           PEIXINHO
+        ===================================== */
+
+        .peixe {
+            position: relative;
+
+            width: 58px;
+            height: 32px;
+
+            background: #c5ddeb;
+
+            border-radius: 50% 45% 45% 50%;
+
+            flex-shrink: 0;
+        }
+
+        .peixe::before {
+            content: "";
+
+            position: absolute;
+
+            left: -18px;
+            top: 0;
+
+            width: 30px;
+            height: 32px;
+
+            background: #c5ddeb;
+
+            /* formato da cauda */
+            clip-path: polygon(
+                100% 50%,
+                0 0,
+                0 42%,
+                45% 50%,
+                0 58%,
+                0 100%
+            );
+
+            border-radius: 10px;
+        }
+
+        .peixe::after {
+            content: "";
+
+            position: absolute;
+
+            right: 10px;
+            top: 8px;
+
+            width: 8px;
+            height: 8px;
+
+            background: white;
+
+            border-radius: 50%;
+        }
+
+
+        /* =====================================
+           ÁREA PRINCIPAL
+        ===================================== */
+
+        .home {
+            position: absolute;
+
+            top: 110px;
+            left: 20px;
+            right: 20px;
+            bottom: 20px;
+
+            display: flex;
+
+            gap: 45px;
+
+            z-index: 5;
+        }
+
+
+        /* =====================================
+           DESENHOS EM DESTAQUE
+        ===================================== */
+
+        .destaques {
+            width: 890px;
+            height: 690px;
+
+            background: white;
+
+            border-radius: 0 20px 20px 0;
+
+            padding: 15px 20px;
+
+            margin-left: -20px;
+        }
+
+        .destaques h1 {
+            text-align: center;
+
+            color: #4b3027;
+
+            font-size: 29px;
+
+            margin-bottom: 28px;
+        }
+
+
+        /* =====================================
+           ÁREA DOS DESENHOS
+        ===================================== */
+
+        .desenhos {
+            display: flex;
+
+            gap: 30px;
+
+            height: 410px;
+        }
+
+
+        /* =====================================
+           DESENHO GRANDE
+        ===================================== */
+
+        .desenho-grande {
+            width: 440px;
+        }
+
+        .imagem-desenho-grande {
+            width: 100%;
+            height: 545px;
+
+            background: #c5ddeb;
+
+            border-radius: 20px;
+
+            overflow: hidden;
+        }
+
+        .imagem-desenho-grande img {
+            width: 100%;
+            height: 100%;
+
+            object-fit: cover;
+        }
+
+
+        /* =====================================
+           COLUNA DOS DESENHOS MENORES
+        ===================================== */
+
+        .coluna-desenhos {
+            width: 240px;
+
+            display: flex;
+
+            flex-direction: column;
+
+            gap: 12px;
+        }
+
+        .desenho-pequeno {
+            width: 307px;
+        }
+
+        .imagem-desenho-pequeno {
+            width: 100%;
+            height: 255px;
+
+            background: #c5ddeb;
+
+            border-radius: 20px;
+
+            overflow: hidden;
+        }
+
+        .imagem-desenho-pequeno img {
+            width: 100%;
+            height: 100%;
+
+            object-fit: cover;
+        }
+
+
+        /* =====================================
+           "POR:"
+        ===================================== */
+
+        .por {
+            color: #4b3027;
+
+            font-size: 15px;
+
+            font-weight: bold;
+
+            margin-top: 3px;
+        }
+
+
+        /* =====================================
+           LADO DIREITO
+        ===================================== */
+
+        .lado-direito {
+            flex: 1;
+
+            display: flex;
+
+            flex-direction: column;
+
+            gap: 20px;
+
+            min-width: 0;
+        }
+
+
+        /* =====================================
+           IMAGEM PRINCIPAL
+        ===================================== */
+
+        .imagem-principal {
+            width: 100%;
+
+            height: 262px;
+
+            background: #c5ddeb;
+
+            border-radius: 20px;
+
+            overflow: hidden;
+        }
+
+        .imagem-principal img {
+            width: 100%;
+            height: 100%;
+
+            object-fit: cover;
+        }
+
+
+        /* =====================================
+           BOTÕES
+        ===================================== */
+
+        .botoes-home {
+            display: flex;
+
+            gap: 40px;
+
+            width: 100%;
+        }
+
+        .botao-home {
+            flex: 1;
+
+            height: 405px;
+
+            background: #a8897e;
+
+            border: none;
+
+            border-radius: 20px;
+
+            color: white;
+
+            font-size: 24px;
+
+            font-weight: bold;
+
+            cursor: pointer;
+
+            transition: 0.2s;
+
+            display: flex;
+
+            flex-direction: column;
+
+            align-items: center;
+
+            justify-content: flex-start;
+
+            padding-top: 25px;
+        }
+
+        /* TEXTO EM CIMA */
+        .botao-home span {
+            display: block;
+
+            order: 1;
+        }
+
+        /* IMAGEM MAIOR E EMBAIXO */
+        .botao-home img {
+            width: 250px;
+            height: 250px;
+
+            object-fit: contain;
+
+            margin-top: 15px;
+
+            order: 2;
+        }
+
+
+        /* =====================================
+           DECORAÇÃO DO CANTO
+        ===================================== */
+
+        .decoracao {
+            position: absolute;
+
+            right: -150px;
+            bottom: -70px;
+
+            width: 700px;
+
+            opacity: 0.18;
+
+            pointer-events: none;
+
+            z-index: 1;
+        }
+
+
+        /* =====================================
+           RESPONSIVIDADE
+        ===================================== */
+
+        @media (max-width: 1100px) {
+
+            .pesquisa {
+                right: 30px;
+                width: 300px;
+            }
+
+            .abas {
+                left: 120px;
+
+                gap: 10px;
+            }
+
+            .aba {
+                width: 110px;
+            }
+
+            .home {
+                gap: 25px;
+            }
+
+            .destaques {
+                width: 48%;
+            }
+
+            .lado-direito {
+                width: 52%;
+            }
+
+            .botoes-home {
+                gap: 20px;
+            }
+        }
+
+    </style>
+</head>
+
+
+<body>
+
+
+    <!-- =====================================
+         FUNDO
+    ====================================== -->
+
+    <div class="fundo"></div>
+
+
+    <!-- =====================================
+         CABEÇALHO
+    ====================================== -->
+
+    <header class="cabecalho">
+
+
+        <!-- LOGO -->
+
+        <div class="logo">
+
+            <img
+                src="kit.png"
+                alt="Logo"
+            >
+
+        </div>
+
+
+        <!-- ABAS -->
+
+        <nav class="abas">
+
+            <button
+                class="aba ativa"
+                onclick="window.location.href='index.html'"
+            >
+                Home
+            </button>
+
+            <button
+                class="aba"
+                onclick="window.location.href='sobre.html'"
+            >
+                Sobre
+            </button>
+
+            <button
+                class="aba"
+                onclick="window.location.href='turmas.html'"
+            >
+                Turmas
+            </button>
+
+            <button
+                class="aba"
+                onclick="window.location.href='avalie.html'"
+            >
+                Avalie
+            </button>
+
+        </nav>
+
+
+        <!-- PESQUISA -->
+
+        <div class="pesquisa">
+
+            <div class="icone-pesquisa">
+
+                <img
+                    src="lupa2.png"
+                    alt="Pesquisar"
+                >
+
+            </div>
+
+            <input
+                type="text"
+                aria-label="Pesquisar"
+                placeholder=""
+            >
+
+        </div>
+
+    </header>
+
+
+    <!-- =====================================
+         CONTEÚDO DA HOME
+    ====================================== -->
+
+    <main class="conteudo">
+
+
+        <!-- =================================
+             FAIXA DE PEIXES
+        ================================== -->
+
+        <div class="faixa-peixes">
+
+            <span class="peixe"></span>
+            <span class="peixe"></span>
+            <span class="peixe"></span>
+            <span class="peixe"></span>
+            <span class="peixe"></span>
+            <span class="peixe"></span>
+            <span class="peixe"></span>
+            <span class="peixe"></span>
+            <span class="peixe"></span>
+            <span class="peixe"></span>
+            <span class="peixe"></span>
+            <span class="peixe"></span>
+            <span class="peixe"></span>
+            <span class="peixe"></span>
+
+        </div>
+
+
+        <!-- =================================
+             HOME
+        ================================== -->
+
+        <section class="home">
+
+
+            <!-- =================================
+                 DESENHOS EM DESTAQUE
+            ================================== -->
+
+            <div class="destaques">
+
+                <h1>
+                    Desenhos em destaque
+                </h1>
+
+
+                <div class="desenhos">
+
+
+                    <!-- DESENHO GRANDE -->
+
+                    <div class="desenho-grande">
+
+                        <div class="imagem-desenho-grande">
+
+                            <!--
+                                Coloque uma imagem aqui:
+
+                                <img src="desenho1.png">
+                            -->
+
+                        </div>
+
+                        <p class="por">
+                            Por:
+                        </p>
+
+                    </div>
+
+
+                    <!-- DESENHOS PEQUENOS -->
+
+                    <div class="coluna-desenhos">
+
+
+                        <div class="desenho-pequeno">
+
+                            <div class="imagem-desenho-pequeno">
+
+                                <!--
+                                    <img src="desenho2.png">
+                                -->
+
+                            </div>
+
+                            <p class="por">
+                                Por:
+                            </p>
+
+                        </div>
+
+
+                        <div class="desenho-pequeno">
+
+                            <div class="imagem-desenho-pequeno">
+
+                                <!--
+                                    <img src="desenho3.png">
+                                -->
+
+                            </div>
+
+                            <p class="por">
+                                Por:
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- =================================
+                 LADO DIREITO
+            ================================== -->
+
+            <div class="lado-direito">
+
+
+                <!-- IMAGEM PRINCIPAL -->
+
+                <div class="imagem-principal">
+
+                    <!--
+                        Coloque a imagem principal aqui:
+
+                        <img src="imagem-home.png">
+                    -->
+
+                </div>
+
+
+                <!-- BOTÕES -->
+
+                <div class="botoes-home">
+
+
+                    <!-- ENVIAR DESENHO -->
+
+                    <button
+                        class="botao-home"
+                        onclick="window.location.href='enviar.html'"
+                    >
+
+                        <span>
+                            Envie seu desenho
+                        </span>
+
+                        <img
+                            src="envieseudesenho.png"
+                            alt="Enviar desenho"
+                        >
+
+                    </button>
+
+
+                    <!-- REDES SOCIAIS -->
+
+                    <button
+                        class="botao-home"
+                        onclick="window.location.href='redes.html'"
+                    >
+
+                        <span>
+                            Redes sociais
+                        </span>
+
+                        <img
+                            src="redessociais.png"
+                            alt="Redes sociais"
+                        >
+
+                    </button>
+
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =================================
+             DECORAÇÃO
+        ================================== -->
+
+        <img
+            src="ChatGPT_Image_21_de_ago._de_2026__13_31_48-removebg-preview.png"
+            alt=""
+            class="decoracao"
+        >
+
+    </main>
+
+
+</body>
+
+</html>

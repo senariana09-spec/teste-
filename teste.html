@@ -1,0 +1,589 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Sobre o site</title>
+
+    <style>
+
+        /* =====================================
+           CONFIGURAÇÕES GERAIS
+        ===================================== */
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            width: 100%;
+            min-height: 100%;
+        }
+
+        body {
+            width: 100%;
+            min-height: 100vh;
+
+            font-family: "Comic Sans MS", Arial, sans-serif;
+
+            background: #fff1b8;
+
+            overflow-x: hidden;
+            overflow-y: auto;
+        }
+
+
+        /* =====================================
+           IMAGEM USADA COMO FUNDO
+        ===================================== */
+
+        .fundo {
+            position: fixed;
+
+            top: 85px;
+            left: 0;
+
+            width: 100%;
+            height: calc(100vh - 85px);
+
+            background-color: #fff1b8;
+
+            background-image: url("fundo-sobre.png");
+
+            background-repeat: no-repeat;
+
+            /*
+             * A imagem ocupa toda a área abaixo
+             * do cabeçalho.
+             */
+            background-size: 100% 100%;
+
+            background-position: center top;
+
+            z-index: 1;
+
+            pointer-events: none;
+        }
+
+
+        /* =====================================
+           CABEÇALHO
+        ===================================== */
+
+        .cabecalho {
+            position: fixed;
+
+            top: 0;
+            left: 0;
+
+            width: 100%;
+            height: 85px;
+
+            background: #4b3027;
+
+            border-top: 3px solid #3b2923;
+
+            z-index: 100;
+        }
+
+
+        /* =====================================
+           LOGO DO CABEÇALHO
+        ===================================== */
+
+        .logo {
+            position: absolute;
+
+            left: 20px;
+            top: 10px;
+
+            width: 65px;
+            height: 65px;
+
+            border-radius: 50%;
+
+            overflow: hidden;
+        }
+
+        .logo img {
+            width: 100%;
+            height: 100%;
+
+            object-fit: contain;
+        }
+
+
+        /* =====================================
+           ABAS
+        ===================================== */
+
+        .abas {
+            position: absolute;
+
+            left: 157px;
+            bottom: 0;
+
+            display: flex;
+
+            gap: 26px;
+
+            align-items: flex-end;
+        }
+
+        .aba {
+            width: 126px;
+            height: 43px;
+
+            background: white;
+
+            border: none;
+
+            border-radius: 20px 20px 0 0;
+
+            cursor: pointer;
+
+            transition: 0.2s;
+
+            font-size: 18px;
+            font-weight: bold;
+
+            color: #4b3027;
+        }
+
+        .aba:hover {
+            background: #f3f3f3;
+
+            transform: translateY(5px);
+        }
+
+
+        /* =====================================
+           PESQUISA
+        ===================================== */
+
+        .pesquisa {
+            position: absolute;
+
+            right: 126px;
+            top: 19px;
+
+            width: 405px;
+            height: 49px;
+
+            background: white;
+
+            border-radius: 30px;
+
+            display: flex;
+
+            align-items: center;
+        }
+
+        .icone-pesquisa {
+            margin-left: 20px;
+
+            width: 35px;
+            height: 40px;
+
+            display: flex;
+
+            align-items: center;
+            justify-content: center;
+        }
+
+        .icone-pesquisa img {
+            width: 30px;
+            height: 40px;
+
+            object-fit: contain;
+        }
+
+        .pesquisa input {
+            width: 330px;
+            height: 100%;
+
+            margin-left: 14px;
+
+            border: none;
+            outline: none;
+
+            background: transparent;
+
+            font-size: 18px;
+        }
+
+
+        /* =====================================
+           ÁREA PRINCIPAL
+        ===================================== */
+
+        .conteudo {
+            position: relative;
+
+            margin-top: 85px;
+
+            width: 100%;
+
+            min-height: calc(100vh - 85px);
+
+            background: transparent;
+
+            z-index: 20;
+
+            padding: 0;
+        }
+
+
+        /* =====================================
+           ESCONDE O CONTEÚDO ANTIGO
+           
+           A imagem agora contém toda a parte
+           visual da página.
+        ===================================== */
+
+        .conteudo > * {
+            visibility: hidden;
+        }
+
+
+        /* =====================================
+           RESPONSIVIDADE DO FUNDO
+        ===================================== */
+
+        @media (max-width: 1100px) {
+
+            .fundo {
+                background-size: 100% 100%;
+            }
+        }
+
+
+        @media (max-width: 850px) {
+
+            .fundo {
+                background-size: cover;
+
+                background-position: center top;
+            }
+        }
+
+
+        @media (max-width: 600px) {
+
+            .fundo {
+                background-size: cover;
+
+                background-position: center top;
+            }
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- =====================================
+         FUNDO DA PÁGINA
+         
+         A imagem "fundo-sobre.png" contém
+         toda a parte abaixo do cabeçalho.
+    ===================================== -->
+
+    <div class="fundo"></div>
+
+
+    <!-- =====================================
+         CABEÇALHO
+    ===================================== -->
+
+    <header class="cabecalho">
+
+
+        <!-- LOGO -->
+
+        <div class="logo">
+
+            <img
+                src="kit.png"
+                alt="Logo"
+            >
+
+        </div>
+
+
+        <!-- ABAS -->
+
+        <nav class="abas">
+
+            <button
+                class="aba ativa"
+                onclick="window.location.href='home.html'"
+            >
+                Home
+            </button>
+
+            <button
+                class="aba"
+                onclick="window.location.href='sobre.html'"
+            >
+                Sobre
+            </button>
+
+            <button
+                class="aba"
+                onclick="window.location.href='turmas.html'"
+            >
+                Desenhos
+            </button>
+
+            <button
+                class="aba"
+                onclick="window.location.href='avalie.html'"
+            >
+                Avalie
+            </button>
+
+        </nav>
+
+
+        <!-- PESQUISA -->
+
+        <div class="pesquisa">
+
+            <div class="icone-pesquisa">
+
+                <img
+                    src="lupa2.png"
+                    alt=""
+                >
+
+            </div>
+
+            <input
+                type="text"
+                aria-label="Pesquisar"
+            >
+
+        </div>
+
+    </header>
+
+
+    <!-- =====================================
+         CONTEÚDO ORIGINAL
+         
+         Mantido no código, mas ocultado porque
+         a imagem já contém esse conteúdo.
+    ===================================== -->
+
+    <main class="conteudo">
+
+
+        <section class="parte-superior">
+
+            <div class="lado-esquerdo">
+
+                <div class="titulo-sobre">
+
+                    <h1>
+                        Sobre o site
+                    </h1>
+
+                </div>
+
+
+                <div class="texto-sobre">
+
+                    Este site foi desenvolvido como parte de um projeto
+                    para a Feira Tecnológica da ETEC MCM,
+                    com o objetivo de criar uma galeria digital de
+                    desenhos, proporcionando a criatividade e a
+                    expressão artística dos alunos.
+
+                    <br>
+
+                    Além disso, o projeto busca unir arte e tecnologia,
+                    mostrando como ferramentas digitais podem ser
+                    utilizadas para apresentar e compartilhar produções
+                    de uma maneira moderna e acessível.
+
+                    <br>
+
+                    A ideia é proporcionar um espaço virtual onde os
+                    trabalhos dos alunos possam ser apresentados,
+                    organizados e apreciados de forma simples e interativa.
+
+                    <br>
+
+                    Obrigada pela visita, esperamos que aproveite!!
+
+                </div>
+
+
+                <img
+                    src="ki.png"
+                    alt="Logo"
+                    class="logo-grande"
+                >
+
+            </div>
+
+
+            <div class="desenvolvedores">
+
+                <div class="titulo-desenvolvedores">
+
+                    <h2>
+                        Desenvolvedores
+                    </h2>
+
+                </div>
+
+
+                <div class="desenvolvedor dev1">
+
+                    <img
+                        src="ki.png"
+                        alt=""
+                    >
+
+                    <span>
+                        Ariana Sena
+                    </span>
+
+                </div>
+
+
+                <div class="desenvolvedor dev2">
+
+                    <span>
+                        Ana Domingues
+                    </span>
+
+                    <img
+                        src="ki.png"
+                        alt=""
+                    >
+
+                </div>
+
+
+                <div class="desenvolvedor dev3">
+
+                    <img
+                        src="ki.png"
+                        alt=""
+                    >
+
+                    <span>
+                        Arthur S.
+                    </span>
+
+                </div>
+
+
+                <div class="desenvolvedor dev4">
+
+                    <span>
+                        Arthur M.
+                    </span>
+
+                    <img
+                        src="ki.png"
+                        alt=""
+                    >
+
+                </div>
+
+
+                <div class="desenvolvedor dev5">
+
+                    <span>
+                        Eduarda Motta
+                    </span>
+
+                    <img
+                        src="ki.png"
+                        alt=""
+                    >
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <section class="quadros">
+
+            <div class="quadro objetivo">
+
+                <h2>
+                    Objetivo
+                </h2>
+
+                O Miauseum foi criado com o objetivo de
+                tornar a arte mais acessível,
+                aproximando as pessoas por meio de seus
+                desenhos e permitindo que todos
+                possam compartilhar e conhecer
+                diferentes formas de expressão
+                artística.
+
+            </div>
+
+
+            <div class="quadro ods">
+
+                <h2>
+                    ODS utilizados
+                </h2>
+
+                A ODS 4 está relacionada ao nosso
+                projeto porque o Miauseum incentiva a
+                aprendizagem e a expressão artística.
+
+                <br><br>
+
+                A ODS 11 se relaciona ao projeto por
+                promover uma comunidade mais
+                conectada e inclusiva.
+
+            </div>
+
+
+            <div class="quadro problema">
+
+                <h2>
+                    Problema e justificativa
+                </h2>
+
+                Atualmente, com o crescimento da
+                tecnologia e da inteligência artificial,
+                a arte feita por pessoas pode acabar
+                sendo menos valorizada.
+
+                <br><br>
+
+                O Miauseum busca ajudar a resolver esse
+                problema, criando um espaço digital
+                para compartilhar, conhecer e
+                valorizar a arte real.
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+</body>
+
+</html>

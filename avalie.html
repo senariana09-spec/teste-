@@ -1,0 +1,808 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Avalie</title>
+
+    <style>
+
+        /* =====================================
+           CONFIGURAÇÕES GERAIS
+        ===================================== */
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html,
+        body {
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+
+        body {
+            font-family: "Arial Rounded MT Bold", Arial, sans-serif;
+            background: #fff1b8;
+        }
+
+
+        /* =====================================
+           FUNDO
+        ===================================== */
+
+        .fundo {
+            position: fixed;
+
+            inset: 0;
+
+            width: 100%;
+            height: 100%;
+
+            background: #fff1b8;
+
+            z-index: 1;
+        }
+
+
+        /* =====================================
+           CABEÇALHO
+        ===================================== */
+
+        .cabecalho {
+            position: fixed;
+
+            top: 0;
+            left: 0;
+
+            width: 100%;
+            height: 85px;
+
+            background: #4b3027;
+
+            border-top: 3px solid #3b2923;
+
+            z-index: 100;
+        }
+
+
+        /* =====================================
+           LOGO
+        ===================================== */
+
+        .logo {
+            position: absolute;
+
+            left: 20px;
+            top: 10px;
+
+            width: 65px;
+            height: 65px;
+
+            border-radius: 50%;
+
+            overflow: hidden;
+        }
+
+        .logo img {
+            width: 100%;
+            height: 100%;
+
+            object-fit: contain;
+        }
+
+
+        /* =====================================
+           ABAS
+        ===================================== */
+
+        .abas {
+            position: absolute;
+
+            left: 157px;
+            bottom: 0;
+
+            display: flex;
+
+            gap: 26px;
+
+            align-items: flex-end;
+        }
+
+        .aba {
+            width: 126px;
+            height: 43px;
+
+            background: white;
+
+            border: none;
+
+            border-radius: 20px 20px 0 0;
+
+            cursor: pointer;
+
+            transition: 0.2s;
+
+            font-size: 18px;
+            font-weight: bold;
+
+            color: #4b3027;
+        }
+
+        .aba:hover {
+            background: #f3f3f3;
+
+            transform: translateY(5px);
+        }
+
+
+        /* =====================================
+           CONTEÚDO
+        ===================================== */
+
+        .conteudo {
+            position: fixed;
+
+            top: 82px;
+            left: 0;
+
+            width: 100%;
+            height: calc(100% - 82px);
+
+            background: #fff1b8;
+
+            z-index: 20;
+
+            overflow: hidden;
+        }
+
+
+        /* =====================================
+           DECORAÇÃO DO FUNDO
+        ===================================== */
+
+        .decoracao {
+            position: absolute;
+
+            right: -150px;
+            bottom: -70px;
+
+            width: 700px;
+
+            opacity: 0.18;
+
+            pointer-events: none;
+
+            z-index: 1;
+        }
+
+
+        /* =====================================
+           TÍTULO
+        ===================================== */
+
+        .titulo-area {
+            position: absolute;
+
+            top: 133px;
+            left: 50%;
+
+            transform: translateX(-50%);
+
+            width: 850px;
+            height: 185px;
+
+            background: white;
+
+            border-radius: 24px;
+
+            display: flex;
+
+            align-items: center;
+            justify-content: center;
+
+            z-index: 5;
+        }
+
+        .titulo-area h1 {
+            color: #4b3027;
+
+            font-size: 78px;
+
+            font-weight: bold;
+
+            letter-spacing: 1px;
+
+            margin-top: 5px;
+        }
+
+
+        /* =====================================
+           FAIXAS MARRONS
+        ===================================== */
+
+        .faixa {
+            position: absolute;
+
+            top: -134px;
+
+            width: 90px;
+            height: 250px;
+
+            background: #a8897e;
+
+            z-index: 10;
+        }
+
+        .faixa-esquerda {
+            left: 30px;
+        }
+
+        .faixa-direita {
+            right: 30px;
+        }
+
+
+        /* =====================================
+           PONTAS DAS FAIXAS
+        ===================================== */
+
+        .ponta-faixa {
+            position: absolute;
+
+            bottom: -24px;
+            left: -22px;
+
+            width: 134px;
+            height: 82px;
+        }
+
+        .ponta-faixa::before,
+        .ponta-faixa::after {
+            content: "";
+
+            position: absolute;
+
+            bottom: 22px;
+
+            width: 58px;
+            height: 58px;
+
+            background: #a8897e;
+
+            border-radius: 50%;
+        }
+
+        .ponta-faixa::before {
+            left: 0;
+        }
+
+        .ponta-faixa::after {
+            right: 0;
+        }
+
+        .ponta-faixa .meio {
+            position: absolute;
+
+            bottom: 0;
+            left: 38px;
+
+            width: 58px;
+            height: 58px;
+
+            background: #a8897e;
+
+            border-radius: 50%;
+        }
+
+
+        /* =====================================
+           ÁREA DE FEEDBACK
+        ===================================== */
+
+        .feedback {
+            position: absolute;
+
+            top: 323px;
+            left: 50%;
+
+            transform: translateX(-50%);
+
+            width: 680px;
+            height: 430px;
+
+            background: #c5ddeb;
+
+            border-radius: 24px 24px 0 0;
+
+            padding-top: 43px;
+
+            z-index: 5;
+        }
+
+
+        /* =====================================
+           TÍTULO DO FEEDBACK
+        ===================================== */
+
+        .feedback h2 {
+            margin-left: 82px;
+
+            color: #4b3027;
+
+            font-size: 35px;
+
+            font-weight: bold;
+        }
+
+
+        /* =====================================
+           CAIXA DE TEXTO
+        ===================================== */
+
+        .caixa-feedback {
+            position: absolute;
+
+            left: 82px;
+            top: 82px;
+
+            width: 516px;
+            height: 275px;
+
+            background: white;
+
+            border: none;
+
+            outline: none;
+
+            resize: none;
+
+            border-radius: 22px;
+
+            padding: 22px;
+
+            color: #4b3027;
+
+            font-family: Arial, sans-serif;
+
+            font-size: 19px;
+        }
+
+
+        /* =====================================
+           BOTÃO ENVIAR
+        ===================================== */
+
+        .botao-enviar {
+            position: absolute;
+
+            right: 100px;
+            bottom: 40px;
+
+            background: transparent;
+
+            border: none;
+
+            color: #4b3027;
+
+            font-family: "Arial Rounded MT Bold", Arial, sans-serif;
+
+            font-size: 19px;
+
+            font-weight: bold;
+
+            cursor: pointer;
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 10px;
+        }
+
+        .botao-enviar:hover {
+            opacity: 0.7;
+        }
+
+
+        /* =====================================
+           ÍCONE DO BOTÃO
+        ===================================== */
+
+        .icone-enviar {
+            width: 0;
+            height: 0;
+
+            border-top: 12px solid transparent;
+            border-bottom: 12px solid transparent;
+
+            border-left: 30px solid #4b3027;
+
+            transform: rotate(-25deg);
+        }
+
+
+        /* =====================================
+           BOTÃO PARA VER FEEDBACKS
+        ===================================== */
+
+        .botao-ver-feedbacks {
+            position: absolute;
+
+            left: 50%;
+            bottom: 25px;
+
+            transform: translateX(-50%);
+
+            background: white;
+
+            border: none;
+
+            border-radius: 15px;
+
+            padding: 12px 25px;
+
+            color: #4b3027;
+
+            font-family: "Arial Rounded MT Bold", Arial, sans-serif;
+
+            font-size: 17px;
+
+            font-weight: bold;
+
+            cursor: pointer;
+
+            z-index: 30;
+
+            transition: 0.2s;
+        }
+
+        .botao-ver-feedbacks:hover {
+            transform: translateX(-50%) scale(1.05);
+        }
+
+
+        /* =====================================
+           RESPONSIVIDADE
+        ===================================== */
+
+        @media (max-width: 1000px) {
+
+            .abas {
+                left: 110px;
+                gap: 10px;
+            }
+
+            .aba {
+                width: 105px;
+            }
+
+            .titulo-area {
+                width: 700px;
+                height: 175px;
+            }
+
+            .titulo-area h1 {
+                font-size: 65px;
+            }
+
+            .feedback {
+                width: 620px;
+            }
+
+            .caixa-feedback {
+                width: 470px;
+            }
+        }
+
+
+        @media (max-width: 700px) {
+
+            .abas {
+                left: 90px;
+                gap: 5px;
+            }
+
+            .aba {
+                width: 80px;
+                font-size: 14px;
+            }
+
+            .titulo-area {
+                width: 90%;
+                height: 140px;
+                top: 80px;
+            }
+
+            .titulo-area h1 {
+                font-size: 45px;
+            }
+
+            .feedback {
+                top: 250px;
+                width: 90%;
+                height: 380px;
+            }
+
+            .feedback h2 {
+                margin-left: 30px;
+                font-size: 25px;
+            }
+
+            .caixa-feedback {
+                left: 30px;
+                width: calc(100% - 60px);
+                height: 220px;
+            }
+
+            .botao-enviar {
+                right: 40px;
+                bottom: 25px;
+            }
+
+            .botao-ver-feedbacks {
+                display: none;
+            }
+        }
+
+    </style>
+</head>
+
+
+<body>
+
+
+    <!-- =====================================
+         FUNDO
+    ===================================== -->
+
+    <div class="fundo"></div>
+
+
+    <!-- =====================================
+         CABEÇALHO
+    ===================================== -->
+
+    <header class="cabecalho">
+
+        <!-- LOGO -->
+
+        <div class="logo">
+
+            <img
+                src="kit.png"
+                alt="Logo"
+            >
+
+        </div>
+
+
+        <!-- ABAS -->
+
+        <nav class="abas">
+
+            <button
+                class="aba"
+                onclick="window.location.href='home.html'"
+            >
+                Home
+            </button>
+
+            <button
+                class="aba"
+                onclick="window.location.href='sobre.html'"
+            >
+                Sobre
+            </button>
+
+            <button
+                class="aba"
+                onclick="window.location.href='turmas.html'"
+            >
+                Desenhos
+            </button>
+
+            <button
+                class="aba ativa"
+                onclick="window.location.href='avalie.html'"
+            >
+                Avalie
+            </button>
+
+        </nav>
+
+    </header>
+
+
+    <!-- =====================================
+         CONTEÚDO
+    ===================================== -->
+
+    <main class="conteudo">
+
+
+        <!-- DECORAÇÃO -->
+
+        <img
+            src="ChatGPT_Image_21_de_ago._de_2026__13_31_48-removebg-preview.png"
+            alt=""
+            class="decoracao"
+        >
+
+
+        <!-- =================================
+             TÍTULO
+        ================================== -->
+
+        <section class="titulo-area">
+
+            <h1>
+                Nos avalie!
+            </h1>
+
+
+            <!-- FAIXA ESQUERDA -->
+
+            <div class="faixa faixa-esquerda">
+
+                <div class="ponta-faixa">
+                    <div class="meio"></div>
+                </div>
+
+            </div>
+
+
+            <!-- FAIXA DIREITA -->
+
+            <div class="faixa faixa-direita">
+
+                <div class="ponta-faixa">
+                    <div class="meio"></div>
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =================================
+             FEEDBACK
+        ================================== -->
+
+        <section class="feedback">
+
+            <h2>
+                Deixe seu feedback:
+            </h2>
+
+
+            <textarea
+                id="caixaFeedback"
+                class="caixa-feedback"
+                aria-label="Digite seu feedback"
+                placeholder="Escreva seu feedback aqui..."
+            ></textarea>
+
+
+            <button
+                id="botaoEnviar"
+                class="botao-enviar"
+                type="button"
+            >
+
+                Enviar
+
+                <span class="icone-enviar"></span>
+
+            </button>
+
+        </section>
+
+
+        <!-- =================================
+             VER FEEDBACKS
+        ================================== -->
+
+        <button
+            class="botao-ver-feedbacks"
+            type="button"
+            onclick="window.location.href='feedbacks.html'"
+        >
+            Ver feedbacks enviados
+        </button>
+
+
+    </main>
+
+
+    <!-- =====================================
+         JAVASCRIPT
+    ===================================== -->
+
+    <script>
+
+        /* =====================================
+           ENVIAR FEEDBACK
+        ===================================== */
+
+        const caixaFeedback =
+            document.getElementById("caixaFeedback");
+
+        const botaoEnviar =
+            document.getElementById("botaoEnviar");
+
+
+        botaoEnviar.addEventListener("click", function () {
+
+            const texto =
+                caixaFeedback.value.trim();
+
+
+            /* Impede feedback vazio */
+
+            if (texto === "") {
+
+                alert("Digite um feedback antes de enviar.");
+
+                return;
+            }
+
+
+            /* Pega os feedbacks já existentes */
+
+            let feedbacks =
+                JSON.parse(
+                    localStorage.getItem("miauseumFeedbacks")
+                ) || [];
+
+
+            /* Cria o novo feedback */
+
+            const novoFeedback = {
+
+                texto: texto,
+
+                data: new Date().toLocaleString("pt-BR")
+
+            };
+
+
+            /* Adiciona no final */
+
+            feedbacks.push(novoFeedback);
+
+
+            /* Salva no navegador */
+
+            localStorage.setItem(
+                "miauseumFeedbacks",
+                JSON.stringify(feedbacks)
+            );
+
+
+            /* Limpa a caixa */
+
+            caixaFeedback.value = "";
+
+
+            /* Confirma o envio */
+
+            alert("Feedback enviado com sucesso!");
+
+
+            /* Vai para a página de feedbacks */
+
+            window.location.href = "feedbacks.html";
+
+        });
+
+    </script>
+
+</body>
+
+</html>
